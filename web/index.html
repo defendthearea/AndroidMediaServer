@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0f" />
+  <title>Media</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="login-view" class="screen active">
+    <div class="login-card">
+      <h1>🎬 Media Server</h1>
+      <input id="username" placeholder="Username" autocomplete="username" />
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+      <button id="login-btn">Sign In</button>
+      <p id="login-error" class="error"></p>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="app-view" class="screen">
+    <header>
+      <h1 id="lib-title">Library</h1>
+      <div class="header-actions">
+        <button id="sync-btn" title="SyncPlay">👥 SyncPlay</button>
+        <button id="logout-btn" title="Logout">⏻</button>
+      </div>
+    </header>
+
+    <nav id="tabs">
+      <button data-tab="movies" class="active">Movies</button>
+      <button data-tab="shows">Shows</button>
+      <button data-tab="music">Music</button>
+    </nav>
+
+    <main id="grid"></main>
+  </div>
+
+  <!-- Player -->
+  <div id="player-view" class="screen">
+    <div class="player-bar">
+      <button id="back-btn">← Back</button>
+      <span id="player-title"></span>
+      <span id="sync-badge" class="sync-badge" hidden>👥 Sync ON</span>
+    </div>
+    <div id="player-container"></div>
+  </div>
+
+  <!-- SyncPlay Panel -->
+  <div id="sync-panel" class="sync-panel" hidden>
+    <div class="sync-inner">
+      <div class="sync-header">
+        <h2>👥 SyncPlay</h2>
+        <button id="sync-close">✕</button>
+      </div>
+
+      <div id="sync-not-in-room">
+        <p class="sync-hint">Create a room or join an existing one to watch in sync.</p>
+        <button id="sync-create" class="primary">Create Room</button>
+
+        <h3 class="sync-sub">Active Rooms</h3>
+        <div id="sync-room-list" class="sync-room-list"></div>
+      </div>
+
+      <div id="sync-in-room" hidden>
+        <div class="sync-room-info">
+          <div>Room: <b id="sync-room-id">—</b></div>
+          <div>Host: <span id="sync-host">—</span></div>
+          <div class="sync-members" id="sync-members"></div>
+          <div id="sync-waiting" class="sync-waiting" hidden>⏳ Waiting for members to buffer...</div>
+        </div>
+        <div class="sync-actions">
+          <button id="sync-leave">Leave Room</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
