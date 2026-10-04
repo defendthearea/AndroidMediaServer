@@ -1,0 +1,8 @@
+termux-wake-lock
+cd ~/media-app/server
+export ADMIN_USER=admin
+export ADMIN_PASS=changeme
+export JWT_SECRET=$(openssl rand -hex 32)
+export PORT=8096
+export HOST=0.0.0.0
+node server.js
